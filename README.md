@@ -39,3 +39,74 @@ Day1
 - Installed **.NET SDK**
 - Environment setup for C#
 - Writing and running C# programs using **Notepad++**
+
+---
+
+📅 Day 4 – 19 December
+Topics Covered:
+
+C# Access Modifiers
+
+public
+private
+protected
+internal
+protected internal
+Understanding scope and accessibility in C#
+
+C# Data Types
+
+Value types (int, float, double, char, bool)
+Reference types (string, object)
+
+Type Casting
+
+Implicit casting
+Explicit casting
+
+Taking user input using Console.ReadLine() and Convert class
+
+Practiced basic C# programs using data types and input/output
+
+📅 Day 5 – 20 December
+Topics Covered:
+
+Operators in C#
+
+Arithmetic operators
+
+Relational operators
+
+Logical operators
+
+Assignment operators
+
+Unary operators
+
+Bitwise operators
+
+Fundamental Concepts of C#
+
+Variables and constants
+
+Expressions and statements
+
+Operator precedence
+
+Compile-time vs Run-time
+
+Compilers in C#
+
+Role of C# Compiler
+
+Compilation into IL (Intermediate Language)
+
+Execution using CLR
+
+Problem Solving Practice
+
+Level 1 problems (basic calculations, conversions, input-output)
+
+Level 2 problems (logical thinking, operator-based problems)
+
+Improved understanding of writing clean and readable code
