@@ -10,6 +10,7 @@ class EmployeeMenu
         Console.WriteLine("2. Check Attendance");
         Console.WriteLine("3. Calculate Daily Wage");
         Console.WriteLine("4. Display Employee");
+        Console.WriteLine("5. Calculate Monthly Wage");
         Console.Write("Enter choice: ");
         int choice = int.Parse(Console.ReadLine());
         switch (choice)
@@ -37,6 +38,9 @@ class EmployeeMenu
                 break;
             case 4:
                 util.DisplayEmployee();
+                break;
+             case 5:
+                util.CalculateMonthlyWage();
                 break;
             default:
                 Console.WriteLine("Invalid Choice");

@@ -6,7 +6,13 @@ class EmployeeUtilityImpl
     public void AddEmployee()
     {
         //logic
-        emp.AddEmployee("E101", "Aryan", 22);
+        Console.Write("Enter Employee ID: ");
+        string id = Console.ReadLine();
+        Console.Write("Enter Employee Name: ");
+        string name = Console.ReadLine();
+        Console.Write("Enter Employee Age: ");
+        int age = int.Parse(Console.ReadLine());
+        emp.AddEmployee(id, name, age);
         Console.WriteLine("Employee Added Successfully");
     }
      public void DisplayEmployee()

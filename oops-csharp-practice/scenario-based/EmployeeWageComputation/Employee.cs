@@ -21,6 +21,10 @@ class Employee : IEmployee
     {
         Console.WriteLine(ToString());
     }
+     public int MonthlyWage(int totalDays)
+    {
+         return totalDays * FullDayHour * WagePerHour;
+    }
     //override toString
     public override string ToString()
     {
