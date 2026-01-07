@@ -29,8 +29,12 @@ class EmployeeUtilityImpl
     {
         int attendance = CheckAttendance();
         int hours = 0;
-        switch (attendance)
+        switch(attendance)
         {
+           case 0:
+                Console.WriteLine("Employee is Absent");
+                hours = 0;
+                break;
             case 1:
                 Console.WriteLine("Employee is Present (Full Time)");
                 hours = emp.FullDayHour;
@@ -38,10 +42,6 @@ class EmployeeUtilityImpl
             case 2:
                 Console.WriteLine("Employee is Present (Part Time)");
                 hours = emp.PartTimeHour;
-                break;
-            default:
-                Console.WriteLine("Employee is Absent");
-                hours = 0;
                 break;
         }
         int dailyWage = emp.DailyWage(hours);
