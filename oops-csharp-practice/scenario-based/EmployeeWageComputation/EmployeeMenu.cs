@@ -11,6 +11,7 @@ class EmployeeMenu
         Console.WriteLine("3. Calculate Daily Wage");
         Console.WriteLine("4. Display Employee");
         Console.WriteLine("5. Calculate Monthly Wage");
+        Console.WriteLine("6. Calculate Wages till 100 hours or 20 days");
         Console.Write("Enter choice: ");
         int choice = int.Parse(Console.ReadLine());
         switch (choice)
@@ -42,6 +43,9 @@ class EmployeeMenu
              case 5:
                 util.CalculateMonthlyWage();
                 break;
+             case 6:
+                    util.CalculateWagesTillCondition();
+                    break;
             default:
                 Console.WriteLine("Invalid Choice");
                 break;
