@@ -1,8 +1,8 @@
 using System;
 class EmployeeUtilityImpl
 { 
-    private Employee emp=new Employee();
-    private Random random=new Random();
+    Employee emp=new Employee();
+    Random random=new Random();
     public void AddEmployee()
     {
         //logic
@@ -20,10 +20,10 @@ class EmployeeUtilityImpl
         //logic
         emp.DisplayEmployee();
     }
-    //Check Attendance:Absent=0,Full Time=1,Part Time=2
+    //Check Attendance:Absent=0,FullTime=1,PartTime=2
     public int CheckAttendance()
     {
-        return random.Next(0, 3);
+        return random.Next(0,3);
     }
      public void CalculateDailyWage()
     {
