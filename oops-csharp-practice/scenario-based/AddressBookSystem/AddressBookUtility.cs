@@ -3,39 +3,25 @@ class AddressBook : IContact
 {
     private Contact[] contacts=new Contact[0];
     private int count=0;
-    public void AddContacts()
+    public void AddContact()
     {
-        bool addMore=true;
-        while (addMore)
-        {
-            Contact contact=new Contact();
-            Console.Write("First Name: ");
-            contact.FirstName = Console.ReadLine();
-            Console.Write("Last Name: ");
-            contact.LastName = Console.ReadLine();
-            Console.Write("Address: ");
-            contact.Address = Console.ReadLine();
-            Console.Write("City: ");
-            contact.City = Console.ReadLine();
-            Console.Write("State: ");
-            contact.State = Console.ReadLine();
-            Console.Write("Zip: ");
-            contact.Zip = Console.ReadLine();
-            Console.Write("Phone: ");
-            contact.PhoneNumber = Console.ReadLine();
-            Console.Write("Email: ");
-            contact.Email = Console.ReadLine();
-            AddContact(contact);
-            Console.Write("Add another contact? (y/n): ");
-            string choice=Console.ReadLine();
-            if(choice!="y" && choice != "Y")
-            {
-                addMore=false;
-            }
-        }
-    }
-    private void AddContact(Contact contact)
-    {
+        Contact contact=new Contact();
+        Console.Write("First Name: ");
+        contact.FirstName = Console.ReadLine();
+        Console.Write("Last Name: ");
+        contact.LastName = Console.ReadLine();
+        Console.Write("Address: ");
+        contact.Address = Console.ReadLine();
+        Console.Write("City: ");
+        contact.City = Console.ReadLine();
+        Console.Write("State: ");
+        contact.State = Console.ReadLine();
+        Console.Write("Zip: ");
+        contact.Zip = Console.ReadLine();
+        Console.Write("Phone: ");
+        contact.PhoneNumber = Console.ReadLine();
+        Console.Write("Email: ");
+        contact.Email = Console.ReadLine();
         Contact[] temp=new Contact[count+1];
         for(int i = 0; i < count; i++)
         {
@@ -44,8 +30,9 @@ class AddressBook : IContact
         temp[count]=contact;
         contacts=temp;
         count++;
-        Console.WriteLine("Contact added");
+        Console.WriteLine("Contact added successfully");
     }
+
     public void DeleteContact()
     {
     if (count == 0)

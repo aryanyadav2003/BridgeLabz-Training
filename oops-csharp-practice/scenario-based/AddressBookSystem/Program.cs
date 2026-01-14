@@ -18,7 +18,7 @@ class Program
             switch (choice)
             {
                 case 1:
-                    addressBook.AddContacts();   // UC-1 & UC-2
+                    addressBook.AddContact();   // UC-1 & UC-2
                     break;
 
                 case 2:
