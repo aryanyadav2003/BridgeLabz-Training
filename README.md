@@ -500,3 +500,89 @@ Its primary role is to **initialize class data members**.
 - Sorting algorithms organize data efficiently
 - Proper algorithm choice improves performance
 - Scenario-based practice strengthens understanding
+
+📅 Day 18 – 12 January 2026
+🎯 Learning Objectives
+
+Gain clarity on efficient string manipulation in C#
+
+Understand and implement different searching techniques
+
+Apply concepts using real-life based problem scenarios
+
+🛠️ Work & Practice Completed
+📚 Topic 1: StringBuilder in C#
+
+Explored StringBuilder and why it is preferred over regular string
+
+Learned about:
+
+Its mutable behavior
+
+Improved performance when handling frequent string updates
+
+📚 Topic 2: Searching Techniques
+
+Studied common searching algorithms:
+
+Linear Search
+
+Binary Search
+
+Learned:
+
+Time complexity comparison
+
+When to use each algorithm
+
+Implemented search logic using arrays and loops
+
+🏭 Scenario 1: Metal Factory – Pipe Cutting Module
+
+Created a pipe cutting system for a metal manufacturing unit
+
+Worked with pipe size availability and pricing data
+
+Implemented logic to:
+
+Identify matching pipe sizes
+
+Select the closest available size when an exact match is unavailable
+
+Compute total cost based on required cuts
+
+🪑 Scenario 2: Custom Furniture Production System
+
+Developed a furniture manufacturing solution
+
+Managed wooden rod inventory and furniture size requirements
+
+Implemented logic to:
+
+Check availability of raw materials
+
+Calculate leftover material after cutting
+
+Optimize material usage
+
+💰 Scenario 3: Loan Buddy Application
+
+Designed a simple loan assistance system
+
+Handled customer loan details and eligibility rules
+
+Implemented logic to:
+
+Verify loan amount constraints
+
+Suggest suitable loan options
+
+🧠 Key Learnings
+
+StringBuilder is efficient for operations involving multiple string modifications
+
+Linear Search is easy to implement but not ideal for large datasets
+
+Binary Search offers better performance but requires sorted data
+
+Scenario-based problems improve practical understanding of concepts
