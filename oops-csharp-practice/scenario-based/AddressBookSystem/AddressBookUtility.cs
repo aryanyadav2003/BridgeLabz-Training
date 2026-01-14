@@ -46,6 +46,43 @@ class AddressBook : IContact
         count++;
         Console.WriteLine("Contact added");
     }
+     public void EditContact()
+    {
+        if (count == 0)
+        {
+            Console.WriteLine("No contacts available to edit");
+            return;
+        }
+        Console.Write("Enter First Name of contact to edit: ");
+        string name=Console.ReadLine();
+        bool found=false;
+        for(int i=0;i<count; i++)
+        {
+            if (contacts[i].FirstName.Equals(name,StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("Editing Contact: " + contacts[i].FirstName);
+                Console.Write("New Address: ");
+                contacts[i].Address = Console.ReadLine();
+                Console.Write("New City: ");
+                contacts[i].City = Console.ReadLine();
+                Console.Write("New State: ");
+                contacts[i].State = Console.ReadLine();
+                Console.Write("New Zip: ");
+                contacts[i].Zip = Console.ReadLine();
+                Console.Write("New Phone: ");
+                contacts[i].PhoneNumber = Console.ReadLine();
+                Console.Write("New Email: ");
+                contacts[i].Email = Console.ReadLine();
+                Console.WriteLine("Contact updated successfully");
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+        {
+            Console.WriteLine("Contact not found");
+        }
+    }
     public void DisplayContacts()
     {
         if (count == 0)
