@@ -1,8 +1,13 @@
 using System;
 class AddressBook : IContact
 {
+    public string Name;
     private Contact[] contacts=new Contact[0];
     private int count=0;
+    public AddressBook(string name)
+    {
+        Name = name;
+    }
     public void AddContact()
     {
         Contact contact=new Contact();
