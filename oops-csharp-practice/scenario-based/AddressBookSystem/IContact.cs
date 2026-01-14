@@ -1,5 +1,5 @@
 interface IContact
 {
-    public void AddContact();
-    public void DisplayContact();
+    public void AddContacts();
+    public void DisplayContacts();
 }

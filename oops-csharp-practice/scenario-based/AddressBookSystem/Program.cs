@@ -4,8 +4,8 @@ class Program
 {
     static void Main()
     {
-        IContact contact=new Contact();
-        contact.AddContact();
-        contact.DisplayContact();
+        IContact addressBook=new AddressBook();
+        addressBook.AddContacts();
+        addressBook.DisplayContacts();
     }
 }
