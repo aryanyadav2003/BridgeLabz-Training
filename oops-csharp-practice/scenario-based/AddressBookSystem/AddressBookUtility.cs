@@ -46,6 +46,44 @@ class AddressBook : IContact
         count++;
         Console.WriteLine("Contact added");
     }
+    public void DeleteContact()
+    {
+    if (count == 0)
+    {
+        Console.WriteLine("No contacts to delete");
+        return;
+    }
+
+    Console.Write("Enter First Name of contact to delete: ");
+    string name = Console.ReadLine();
+
+    int index = -1;
+    for (int i = 0; i < count; i++)
+    {
+        if (contacts[i].FirstName.Equals(name, StringComparison.OrdinalIgnoreCase))
+        {
+            index = i;
+            break;
+        }
+    }
+    if (index == -1)
+    {
+        Console.WriteLine("Contact not found");
+        return;
+    }
+    Contact[] temp = new Contact[count - 1];
+    for (int i = 0, j = 0; i < count; i++)
+    {
+        if (i != index)
+        {
+            temp[j] = contacts[i];
+            j++;
+        }
+    }
+    contacts = temp;
+    count--;
+    Console.WriteLine("Contact deleted successfully");
+}
      public void EditContact()
     {
         if (count == 0)
