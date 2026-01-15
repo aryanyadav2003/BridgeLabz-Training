@@ -8,6 +8,15 @@ class AddressBook : IContact
     {
         Name = name;
     }
+    private bool IsDuplicate(Contact newContact)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            if (contacts[i].Equals(newContact))
+                return true;
+        }
+        return false;
+    }
     public void AddContact()
     {
         Contact contact=new Contact();
@@ -15,6 +24,13 @@ class AddressBook : IContact
         contact.FirstName = Console.ReadLine();
         Console.Write("Last Name: ");
         contact.LastName = Console.ReadLine();
+        // UC-7 duplicate check
+        if (IsDuplicate(contact))
+        {
+            Console.WriteLine("Duplicate contact not allowed");
+            return;
+        }
+
         Console.Write("Address: ");
         contact.Address = Console.ReadLine();
         Console.Write("City: ");
@@ -35,9 +51,45 @@ class AddressBook : IContact
         temp[count]=contact;
         contacts=temp;
         count++;
-        Console.WriteLine("Contact added successfully");
+        Console.WriteLine("Contact added to " + Name);
     }
-
+    public void EditContact()
+    {
+        if (count == 0)
+        {
+            Console.WriteLine("No contacts available to edit");
+            return;
+        }
+        Console.Write("Enter First Name of contact to edit: ");
+        string name=Console.ReadLine();
+        bool found=false;
+        for(int i=0;i<count; i++)
+        {
+            if (contacts[i].FirstName.Equals(name,StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("Editing Contact: " + contacts[i].FirstName);
+                Console.Write("New Address: ");
+                contacts[i].Address = Console.ReadLine();
+                Console.Write("New City: ");
+                contacts[i].City = Console.ReadLine();
+                Console.Write("New State: ");
+                contacts[i].State = Console.ReadLine();
+                Console.Write("New Zip: ");
+                contacts[i].Zip = Console.ReadLine();
+                Console.Write("New Phone: ");
+                contacts[i].PhoneNumber = Console.ReadLine();
+                Console.Write("New Email: ");
+                contacts[i].Email = Console.ReadLine();
+                Console.WriteLine("Contact updated successfully");
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+        {
+            Console.WriteLine("Contact not found");
+        }
+    }
     public void DeleteContact()
     {
     if (count == 0)
@@ -76,43 +128,7 @@ class AddressBook : IContact
     count--;
     Console.WriteLine("Contact deleted successfully");
 }
-     public void EditContact()
-    {
-        if (count == 0)
-        {
-            Console.WriteLine("No contacts available to edit");
-            return;
-        }
-        Console.Write("Enter First Name of contact to edit: ");
-        string name=Console.ReadLine();
-        bool found=false;
-        for(int i=0;i<count; i++)
-        {
-            if (contacts[i].FirstName.Equals(name,StringComparison.OrdinalIgnoreCase))
-            {
-                Console.WriteLine("Editing Contact: " + contacts[i].FirstName);
-                Console.Write("New Address: ");
-                contacts[i].Address = Console.ReadLine();
-                Console.Write("New City: ");
-                contacts[i].City = Console.ReadLine();
-                Console.Write("New State: ");
-                contacts[i].State = Console.ReadLine();
-                Console.Write("New Zip: ");
-                contacts[i].Zip = Console.ReadLine();
-                Console.Write("New Phone: ");
-                contacts[i].PhoneNumber = Console.ReadLine();
-                Console.Write("New Email: ");
-                contacts[i].Email = Console.ReadLine();
-                Console.WriteLine("Contact updated successfully");
-                found = true;
-                break;
-            }
-        }
-        if (!found)
-        {
-            Console.WriteLine("Contact not found");
-        }
-    }
+
     public void DisplayContacts()
     {
         if (count == 0)

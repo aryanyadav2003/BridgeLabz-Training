@@ -9,4 +9,14 @@ class Contact
     public string Zip;
     public string PhoneNumber;
     public string Email;
+    public override bool Equals(object obj)
+    {
+        if (obj == null || !(obj is Contact))
+            return false;
+
+        Contact other = (Contact)obj;
+
+        return FirstName.Equals(other.FirstName, StringComparison.OrdinalIgnoreCase)
+            && LastName.Equals(other.LastName, StringComparison.OrdinalIgnoreCase);
+    }
 }
