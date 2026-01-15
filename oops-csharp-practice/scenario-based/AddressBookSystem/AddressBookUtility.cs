@@ -149,4 +149,13 @@ class AddressBook : IContact
             Console.WriteLine("Email   : " + contacts[i].Email);
         }
     }
+    public Contact[] GetContacts()
+    {
+        Contact[] temp=new Contact[count];
+        for(int i = 0; i < count; i++)
+        {
+            temp[i]=contacts[i];
+        }
+        return temp;
+    }
 }

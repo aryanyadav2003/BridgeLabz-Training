@@ -12,7 +12,8 @@ class Program
             Console.WriteLine("\n===== Address Book System =====");
             Console.WriteLine("1. Add Address Book");
             Console.WriteLine("2. Open Address Book");
-            Console.WriteLine("3. Exit");
+            Console.WriteLine("3. Search Person by City or State ");//uc-8
+            Console.WriteLine("4. Exit");
             Console.Write("Enter choice: ");
 
             int choice = int.Parse(Console.ReadLine());
@@ -27,11 +28,15 @@ class Program
                     AddressBook addressBook = system.SelectAddressBook();
                     if (addressBook != null)
                     {
-                        AddressBookMenu(addressBook); // 🔑 important
+                        AddressBookMenu(addressBook);
                     }
                     break;
 
-                case 3:
+                 case 3:
+                    system.SearchPersonByCityOrState(); // UC-8
+                    break;
+
+                case 4:
                     exitSystem = true;
                     break;
 
@@ -42,7 +47,7 @@ class Program
         }
     }
 
-    // 🔹 CONTACT MENU FOR EACH ADDRESS BOOK
+    // CONTACT MENU FOR EACH ADDRESS BOOK
     static void AddressBookMenu(AddressBook addressBook)
     {
         bool exit = false;
