@@ -33,14 +33,14 @@ class Program
                     }
                     break;
 
-                 case 3:
+                case 3:
                     system.ViewByCityOrState(); // UC-9
                     break;
-                
+
                 case 4:
                     system.CountByCityOrState();//uc10
                     break;
-    
+
                 case 5:
                     exitSystem = true;
                     break;
@@ -59,13 +59,16 @@ class Program
 
         while (!exit)
         {
-            Console.WriteLine("\n===== Address Book: " + addressBook.Name + " =====");
+            Console.WriteLine("===== Address Book: " + addressBook.Name + " =====");
             Console.WriteLine("1. Add Person");
             Console.WriteLine("2. Edit Person");
             Console.WriteLine("3. Delete Person");
             Console.WriteLine("4. Display All");
             Console.WriteLine("5. Sort by Name");//uc-11
-            Console.WriteLine("6. Exit");
+            Console.WriteLine("6. Sort by City");
+            Console.WriteLine("7. Sort by State");
+            Console.WriteLine("8. Sort by Zip");
+            Console.WriteLine("9. Exit");
             Console.Write("Enter choice: ");
 
             int choice = int.Parse(Console.ReadLine());
@@ -87,12 +90,23 @@ class Program
                 case 4:
                     addressBook.DisplayContacts();
                     break;
-                
+
                 case 5:
                     addressBook.SortContactByName();
                     break;
-                
+
                 case 6:
+                    addressBook.SortByCity();
+                    break;
+
+                case 7:
+                    addressBook.SortByState();
+                    break;
+
+                case 8:
+                    addressBook.SortByZip();
+                    break;
+                case 9:
                     exit = true;
                     break;
 
