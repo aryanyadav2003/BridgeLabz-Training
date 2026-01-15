@@ -82,5 +82,21 @@ class AddressBookSystem
     if (!found)
         Console.WriteLine("No persons found");
 }
+    //uc=10
+   public void CountByCityOrState()
+    {
+        Console.WriteLine("Enter City or State: ");
+        string key=Console.ReadLine();
+        int total=0;
+        foreach(var book in books.Values)
+        {
+            if (book.CityDict.ContainsKey(key))
+                total += book.CityDict[key].Length;
+
+            if (book.StateDict.ContainsKey(key))
+                total += book.StateDict[key].Length;
+        }
+         Console.WriteLine("Total Contacts: " + total);
+    }
 
 }

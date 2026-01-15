@@ -19,4 +19,8 @@ class Contact
         return FirstName.Equals(other.FirstName, StringComparison.OrdinalIgnoreCase)
             && LastName.Equals(other.LastName, StringComparison.OrdinalIgnoreCase);
     }
+    public override string ToString()
+    {
+        return FirstName + " " + LastName + " | City: " + City + " | State: " + State + " | Phone: " + PhoneNumber;
+    }
 }

@@ -13,7 +13,8 @@ class Program
             Console.WriteLine("1. Add Address Book");
             Console.WriteLine("2. Open Address Book");
             Console.WriteLine("3. Search Person by City/State ");//uc-8
-            Console.WriteLine("4. Exit");
+            Console.WriteLine("4. Count bi City/State"); //uc-10
+            Console.WriteLine("5. Exit");
             Console.Write("Enter choice: ");
 
             int choice = int.Parse(Console.ReadLine());
@@ -33,10 +34,14 @@ class Program
                     break;
 
                  case 3:
-                    system.ViewByCityOrState(); // UC-8
+                    system.ViewByCityOrState(); // UC-9
                     break;
-
+                
                 case 4:
+                    system.CountByCityOrState();//uc10
+                    break;
+    
+                case 5:
                     exitSystem = true;
                     break;
 
@@ -59,7 +64,8 @@ class Program
             Console.WriteLine("2. Edit Person");
             Console.WriteLine("3. Delete Person");
             Console.WriteLine("4. Display All");
-            Console.WriteLine("5. Exit");
+            Console.WriteLine("5. Sort by Name");//uc-11
+            Console.WriteLine("6. Exit");
             Console.Write("Enter choice: ");
 
             int choice = int.Parse(Console.ReadLine());
@@ -81,8 +87,12 @@ class Program
                 case 4:
                     addressBook.DisplayContacts();
                     break;
-
+                
                 case 5:
+                    addressBook.SortContactByName();
+                    break;
+                
+                case 6:
                     exit = true;
                     break;
 

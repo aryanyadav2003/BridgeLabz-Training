@@ -173,5 +173,30 @@ class AddressBook : IContact
             Console.WriteLine("Email   : " + contacts[i].Email);
         }
     }
-
+    public void SortContactByName()
+    {
+        if (count == 0)
+        {
+            Console.WriteLine("No contacts to sort");
+            return;
+        }
+        for(int i = 0; i < count - 1; i++)
+        {
+            for(int j = 0; j < count - i - 1; j++)
+            {
+                if(string.Compare(contacts[j].FirstName,contacts[j + 1].FirstName,StringComparison.OrdinalIgnoreCase) > 0)
+                {
+                     // swap
+                    Contact temp = contacts[j];
+                    contacts[j] = contacts[j + 1];
+                    contacts[j + 1] = temp;
+                }
+            }
+        }
+        Console.WriteLine("--- Sorted Contacts (Alphabetical) ---");
+        for (int i = 0; i < count; i++)
+        {
+           Console.WriteLine(contacts[i].ToString());
+        }  
+    }
 }
