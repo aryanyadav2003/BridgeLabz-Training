@@ -9,10 +9,10 @@ class Program
 
         while (!exitSystem)
         {
-            Console.WriteLine("\n===== Address Book System =====");
+            Console.WriteLine("===== Address Book System =====");
             Console.WriteLine("1. Add Address Book");
             Console.WriteLine("2. Open Address Book");
-            Console.WriteLine("3. Search Person by City or State ");//uc-8
+            Console.WriteLine("3. Search Person by City/State ");//uc-8
             Console.WriteLine("4. Exit");
             Console.Write("Enter choice: ");
 
@@ -33,7 +33,7 @@ class Program
                     break;
 
                  case 3:
-                    system.SearchPersonByCityOrState(); // UC-8
+                    system.ViewByCityOrState(); // UC-8
                     break;
 
                 case 4:

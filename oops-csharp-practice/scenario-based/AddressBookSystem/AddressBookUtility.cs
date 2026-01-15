@@ -4,6 +4,9 @@ class AddressBook : IContact
     public string Name;
     private Contact[] contacts=new Contact[0];
     private int count=0;
+    //uc-9 dictionaries
+    public Dictionary<string, Contact[]> CityDict = new Dictionary<string, Contact[]>();
+    public Dictionary<string, Contact[]> StateDict = new Dictionary<string, Contact[]>();
     public AddressBook(string name)
     {
         Name = name;
@@ -51,7 +54,28 @@ class AddressBook : IContact
         temp[count]=contact;
         contacts=temp;
         count++;
+         // UC-9 dictionary update
+        AddToDictionary(CityDict, contact.City, contact);
+        AddToDictionary(StateDict, contact.State, contact);
         Console.WriteLine("Contact added to " + Name);
+    }
+    private void AddToDictionary(Dictionary<string, Contact[]> dict, string key, Contact c)
+    {
+        if (!dict.ContainsKey(key))
+        {
+            dict[key] = new Contact[] { c };
+        }
+        else
+        {
+            Contact[] oldArr = dict[key];
+            Contact[] newArr = new Contact[oldArr.Length + 1];
+
+            for (int i = 0; i < oldArr.Length; i++)
+                newArr[i] = oldArr[i];
+
+            newArr[oldArr.Length] = c;
+            dict[key] = newArr;
+        }
     }
     public void EditContact()
     {
@@ -149,13 +173,5 @@ class AddressBook : IContact
             Console.WriteLine("Email   : " + contacts[i].Email);
         }
     }
-    public Contact[] GetContacts()
-    {
-        Contact[] temp=new Contact[count];
-        for(int i = 0; i < count; i++)
-        {
-            temp[i]=contacts[i];
-        }
-        return temp;
-    }
+
 }
