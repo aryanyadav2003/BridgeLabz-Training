@@ -1,0 +1,4 @@
+File Handling in C#
+This file is used to demonstrate reading and writing data
+using FileStream.
+IOException handling is also included.
