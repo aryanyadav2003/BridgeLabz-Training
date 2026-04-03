@@ -1,0 +1,291 @@
+using System;
+class AddressBook : IContact
+{
+    public string Name;
+    private Contact[] contacts = new Contact[0];
+    private int count = 0;
+    //uc-9 dictionaries
+    public Dictionary<string, Contact[]> CityDict = new Dictionary<string, Contact[]>();
+    public Dictionary<string, Contact[]> StateDict = new Dictionary<string, Contact[]>();
+    public AddressBook(string name)
+    {
+        Name = name;
+    }
+    private bool IsDuplicate(Contact newContact)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            if (contacts[i].Equals(newContact))
+                return true;
+        }
+        return false;
+    }
+    public void AddContact()
+    {
+        Contact contact = new Contact();
+        Console.Write("First Name: ");
+        contact.FirstName = Console.ReadLine();
+        Console.Write("Last Name: ");
+        contact.LastName = Console.ReadLine();
+        // UC-7 duplicate check
+        if (IsDuplicate(contact))
+        {
+            Console.WriteLine("Duplicate contact not allowed");
+            return;
+        }
+
+        Console.Write("Address: ");
+        contact.Address = Console.ReadLine();
+        Console.Write("City: ");
+        contact.City = Console.ReadLine();
+        Console.Write("State: ");
+        contact.State = Console.ReadLine();
+        Console.Write("Zip: ");
+        contact.Zip = Console.ReadLine();
+        Console.Write("Phone: ");
+        contact.PhoneNumber = Console.ReadLine();
+        Console.Write("Email: ");
+        contact.Email = Console.ReadLine();
+        Contact[] temp = new Contact[count + 1];
+        for (int i = 0; i < count; i++)
+        {
+            temp[i] = contacts[i];
+        }
+        temp[count] = contact;
+        contacts = temp;
+        count++;
+        // UC-9 dictionary update
+        AddToDictionary(CityDict, contact.City, contact);
+        AddToDictionary(StateDict, contact.State, contact);
+        Console.WriteLine("Contact added to " + Name);
+    }
+    private void AddToDictionary(Dictionary<string, Contact[]> dict, string key, Contact c)
+    {
+        if (!dict.ContainsKey(key))
+        {
+            dict[key] = new Contact[] { c };
+        }
+        else
+        {
+            Contact[] oldArr = dict[key];
+            Contact[] newArr = new Contact[oldArr.Length + 1];
+
+            for (int i = 0; i < oldArr.Length; i++)
+                newArr[i] = oldArr[i];
+
+            newArr[oldArr.Length] = c;
+            dict[key] = newArr;
+        }
+    }
+    public void EditContact()
+    {
+        if (count == 0)
+        {
+            Console.WriteLine("No contacts available to edit");
+            return;
+        }
+        Console.Write("Enter First Name of contact to edit: ");
+        string name = Console.ReadLine();
+        bool found = false;
+        for (int i = 0; i < count; i++)
+        {
+            if (contacts[i].FirstName.Equals(name, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("Editing Contact: " + contacts[i].FirstName);
+                Console.Write("New Address: ");
+                contacts[i].Address = Console.ReadLine();
+                Console.Write("New City: ");
+                contacts[i].City = Console.ReadLine();
+                Console.Write("New State: ");
+                contacts[i].State = Console.ReadLine();
+                Console.Write("New Zip: ");
+                contacts[i].Zip = Console.ReadLine();
+                Console.Write("New Phone: ");
+                contacts[i].PhoneNumber = Console.ReadLine();
+                Console.Write("New Email: ");
+                contacts[i].Email = Console.ReadLine();
+                Console.WriteLine("Contact updated successfully");
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+        {
+            Console.WriteLine("Contact not found");
+        }
+    }
+    public void DeleteContact()
+    {
+        if (count == 0)
+        {
+            Console.WriteLine("No contacts to delete");
+            return;
+        }
+
+        Console.Write("Enter First Name of contact to delete: ");
+        string name = Console.ReadLine();
+
+        int index = -1;
+        for (int i = 0; i < count; i++)
+        {
+            if (contacts[i].FirstName.Equals(name, StringComparison.OrdinalIgnoreCase))
+            {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1)
+        {
+            Console.WriteLine("Contact not found");
+            return;
+        }
+        Contact[] temp = new Contact[count - 1];
+        for (int i = 0, j = 0; i < count; i++)
+        {
+            if (i != index)
+            {
+                temp[j] = contacts[i];
+                j++;
+            }
+        }
+        contacts = temp;
+        count--;
+        Console.WriteLine("Contact deleted successfully");
+    }
+
+    public void DisplayContacts()
+    {
+        if (count == 0)
+        {
+            Console.WriteLine("No contacts found");
+            return;
+        }
+        Console.WriteLine("\n--- Address Book ---");
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine("Contact " + (i + 1));
+            Console.WriteLine("Name    : " + contacts[i].FirstName + " " + contacts[i].LastName);
+            Console.WriteLine("Address : " + contacts[i].Address);
+            Console.WriteLine("City    : " + contacts[i].City);
+            Console.WriteLine("State   : " + contacts[i].State);
+            Console.WriteLine("Zip     : " + contacts[i].Zip);
+            Console.WriteLine("Phone   : " + contacts[i].PhoneNumber);
+            Console.WriteLine("Email   : " + contacts[i].Email);
+        }
+    }
+    public void SortContactByName()
+    {
+        if (count == 0)
+        {
+            Console.WriteLine("No contacts to sort");
+            return;
+        }
+        for (int i = 0; i < count - 1; i++)
+        {
+            for (int j = 0; j < count - i - 1; j++)
+            {
+                if (string.Compare(contacts[j].FirstName, contacts[j + 1].FirstName, StringComparison.OrdinalIgnoreCase) > 0)
+                {
+                    // swap
+                    Contact temp = contacts[j];
+                    contacts[j] = contacts[j + 1];
+                    contacts[j + 1] = temp;
+                }
+            }
+        }
+        Console.WriteLine("--- Sorted Contacts (Alphabetical) ---");
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine(contacts[i].ToString());
+        }
+    }
+    public void SortByCity()
+    {
+        if (count == 0)
+        {
+            Console.WriteLine("No contacts to sort");
+            return;
+        }
+
+        for (int i = 0; i < count - 1; i++)
+        {
+            for (int j = 0; j < count - i - 1; j++)
+            {
+                if (string.Compare(
+                    contacts[j].City,
+                    contacts[j + 1].City,
+                    StringComparison.OrdinalIgnoreCase) > 0)
+                {
+                    Contact temp = contacts[j];
+                    contacts[j] = contacts[j + 1];
+                    contacts[j + 1] = temp;
+                }
+            }
+        }
+
+        Console.WriteLine("--- Sorted by City ---");
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine(contacts[i].ToString());
+        }
+    }
+    public void SortByState()
+    {
+        if (count == 0)
+        {
+            Console.WriteLine("No contacts to sort");
+            return;
+        }
+
+        for (int i = 0; i < count - 1; i++)
+        {
+            for (int j = 0; j < count - i - 1; j++)
+            {
+                if (string.Compare(
+                    contacts[j].State,
+                    contacts[j + 1].State,
+                    StringComparison.OrdinalIgnoreCase) > 0)
+                {
+                    Contact temp = contacts[j];
+                    contacts[j] = contacts[j + 1];
+                    contacts[j + 1] = temp;
+                }
+            }
+        }
+
+        Console.WriteLine("\n--- Sorted by State ---");
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine(contacts[i].ToString());
+        }
+    }
+    public void SortByZip()
+    {
+        if (count == 0)
+        {
+            Console.WriteLine("No contacts to sort");
+            return;
+        }
+
+        for (int i = 0; i < count - 1; i++)
+        {
+            for (int j = 0; j < count - i - 1; j++)
+            {
+                if (string.Compare(
+                    contacts[j].Zip,
+                    contacts[j + 1].Zip) > 0)
+                {
+                    Contact temp = contacts[j];
+                    contacts[j] = contacts[j + 1];
+                    contacts[j + 1] = temp;
+                }
+            }
+        }
+
+        Console.WriteLine("--- Sorted by Zip ---");
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine(contacts[i].ToString());
+        }
+    }
+}
